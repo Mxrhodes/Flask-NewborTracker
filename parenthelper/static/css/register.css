@@ -1,0 +1,85 @@
+body{
+    background-color: #9AD1E9;
+}
+
+*{
+    padding:0px;
+    margin: 0px;
+    /* border: 1px dashed green; */
+}
+
+#wrapper{
+    height: 0 auto;
+    width: 970px;
+    margin: auto;
+
+}
+
+h2{
+    text-align: center;
+    color: red;
+}
+
+.box{
+    height: 300px;
+    width: 400px;
+    margin-top: 16%;
+    margin-left: 25%;
+    display: inline-block;
+    border: 5px solid red;
+    padding: 10px;
+    background-color: rgb(173, 196, 206);
+
+}
+
+.box p{
+    font-size: larger;
+    margin-top: 4%;
+}
+
+.message{
+    text-align: center;
+    font-size: smaller;
+    color: rgb(7, 100, 139)
+}
+
+.box input{
+    height: 15px;
+    width: 350px;
+    padding: 4px;
+    margin-left: 5%;
+}
+
+.submit{
+    text-align: right;
+}
+
+.submit input{
+    display: inline-block;
+    margin-right: 5%;
+    height: 5%;
+    width: 60px;
+    padding: 3px;
+
+}
+
+.l-form{
+    margin-top: 2%;
+
+}
+
+.f-set{
+    width: 400px; 
+    background-color: antiquewhite; 
+    border: 2px solid black;
+}
+
+.tr{
+    height: 6%;
+    width: 160px;
+    padding: 3px;
+}
+
+h1{
+    color: red;
+}

@@ -1,0 +1,83 @@
+{% extends "home.html" %}
+{% block footer %}
+    <div class="tables">
+        <table class="table">
+                <caption>Feeding Scheduling  | <a href="{{ url_for('convert_feed_file') }}">Download</a></caption>
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Method</th>
+                <th scope="col">Begin</th>
+                <th scope="col">End</th>
+                <th scope="col">Ounces</th>
+                <th scope="col">Spitups</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in feedEntries %}
+            <tr>
+                <th scope="row">{{ entry.id }}</th>
+                <td>{{ entry.day }}</td>
+                <td>{{ entry.method }}</td>
+                <td>{{ entry.begin_time }}</td>
+                <td>{{ entry.end_time }}</td>
+                <td>{{ entry.ounces }}</td>
+                <td>{{ entry.spitups }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tables">
+            <table class="table">
+                <caption>Diaper Scheduling  | <a href="{{ url_for('convert_diaper_file') }}">Download</a></caption>
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in diaperEntries %}
+                <tr>
+                    <th scope="row">{{ entry.id }}</th>
+                    <td>{{ entry.day }}</td>
+                    <td>{{ entry.time}}</td>
+                    <td>{{ entry.info }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tables">
+            <table class="table">
+                <caption>Sleep Scheduling  | <a href="{{ url_for('convert_sleep_file') }}">Download</a></caption>
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Begin</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in sleepEntries %}
+                <tr>  
+                    <th scope="row">{{ entry.id }}</th>
+                    <td>{{ entry.day }}</td>
+                    <td>{{ entry.begin_time }}</td>
+                    <td>{{ entry.end_time }}</td>
+                    <td>{{ entry.reason }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    {% endblock footer %}

@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  height: auto;
+}
+body{
+  margin: 0;
+}
+
+.wrapper{
+    margin: 0;
+    background-color: #9AD1E9;
+}
+
+.logo{
+    font-size: 60px;
+    text-align: center;
+}
+
+.navi{
+  height: 50px;
+  width: 100%;
+  background-color: wheat;
+}
+.menu {
+    float: left;
+    margin-top: 10px;
+  }
+
+.menu li {
+  display: inline;
+  font-size: 25px;
+}
+
+.menu li + li {
+  margin-left: 45px;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu span{
+  margin-left: 20%;
+}

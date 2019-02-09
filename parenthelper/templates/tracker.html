@@ -1,0 +1,346 @@
+{% extends "home.html" %}
+{% block content %}
+
+<!-- 
+ <link rel="stylesheet" href={{cdn_css | safe}} type="text/css" />
+          
+<script type="text/javascript" src={{cdn_js | safe}}></script>
+-->
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/tracker.css')}}">
+    
+    <div class="t-feeding">
+        <table>
+            <caption>Feeding Pattern</caption>
+            <tr>
+                <th>Date</th>
+                <th>Method</th>
+                <th>Amount</th>
+                <th>Time</th>
+                <th>Vomit?</th>
+                <th>Burped?</th>
+            </tr>
+
+            
+            {% for entry in feedEntries %}
+            <tr>
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.method }}</td>
+                <td>{{ entry.amount }}</td>
+                <td>{{ entry.feed }}</td>
+                <td>{{ entry.vomit }}</td>
+                <td>{{ entry.burp }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <form class="f-form" action="/ph/home/feeding" method="POST">
+            <p>
+                <input type="date" name="date" required=true value="2018/09/26">
+            </p>
+            <p>
+                <select name="method" required class="methods">
+                    <option value="select" selected disabled>Select a Method</option>
+                    <option value="Breastfed">Breastfed</option>
+                    <option value="Bottle">Bottle</option>
+                    <option value="Formula">Formula</option>
+                </select>
+            </p>
+            <p>
+                <select name="amount" required class="amount">
+                    <option value="0" selected disabled>Select an Amount</option>
+                    {% for i in range(1,9) %}
+                    <option value="{{ i }}oz">{{ i }}oz</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label>Time:</label>
+                <input type="time" id="feed-time" name="feed" min="01:00" required />
+            </p>
+            <p>
+                <select name="vomit" required class="vomit">
+                    <option value="0" selected disabled>Did baby vomit?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </p>
+            <p>
+                <select name="burp" required class="burp">
+                    <option value="0" selected disabled>Did baby burp?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Enter">
+            </p>
+        </form>
+    </div>
+    
+    <div class="t-diaper">
+        <table>
+            <caption>Changing Pattern</caption>
+            <tr>
+                <th>Date</th>
+                <th>Where</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Time</th>
+                <th>Color</th>
+            </tr>
+            {% for d in diaperEntries %}
+            <tr>
+                <td>{{ d.date }}</td>
+                <td>{{ d.area }}</td>
+                <td>{{ d.desc }}</td>
+                <td>{{ d.amount }}</td>
+                <td>{{ d.when }}</td>
+                <td>{{ d.color }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form class="f-form" action="/ph/home/changing" method="POST">
+        <p>
+            <input type="date" name="date" required=true value="2018/09/26">
+        </p>
+        
+        <p>
+            <input type="text" name="area" placeholder="Where?" required >
+        </p>
+        
+        <p>
+            <select name="desc" required class="desc">
+                <option value="select" selected disabled>Poop or Pee</option>
+                <option value="Poop">Poop</option>
+                <option value="Pee">Pee</option>
+                <option value="Both">Both</option>
+            </select>
+        </p>
+        <p>
+            <select name="amount" required class="methods">
+                <option value="select" selected disabled>Amount</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        </p>
+        <p>
+            <label>Time:</label>
+            <input type="time" id="feed-time" name="when" min="01:00" required />
+        </p>
+        <p>
+            <input type="text" name="color" placeholder="Color of poop" required >
+        </p>
+        <p>
+            <input type="submit" value="Enter">
+        </p>
+    </form>
+</div>
+
+<div class="t-sleep">
+    <table>
+        <caption>Sleep Pattern</caption>
+        <tr>
+            <th>Date</th>
+            <th>Where</th>
+            <th>From</th>
+            <th>Till</th>
+            <th>By?</th>
+            <th>Passifier?</th>
+            
+        </tr>
+        {% for s in sleepEntries %}
+        <tr>
+            <td>{{ s.date }}</td>
+            <td>{{ s.where }}</td>
+            <td>{{ s.time_from }}</td>
+            <td>{{ s.time_till }}</td>
+            <td>{{ s.whom }}</td>
+            <td>{{ s.passifier }}</td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </table>
+
+    <form class="f-form" action="/ph/home/sleeping" method="POST">
+        <p>
+            <input type="date" name="date" required=true value="2018/09/26">
+        </p>
+        <p>
+            <select name="where" required class="donde">
+                <option value="select" selected disabled>Where</option>
+                <option value="Bassinet">Bassinet</option>
+                <option value="Crib">Crib</option>
+                <option value="Bed">Parents Bed</option>
+                <option value="Sleeper">Sleeper</option>
+                <option value="Co-Sleeper">Co-Sleeper</option>
+            </select>   
+            
+            <p>
+                <label>From:</label>
+                <input type="time" id="slept-at" name="time_from" min="01:00" required />
+            </p>
+            
+            <p>
+                <label>Till:</label>
+                <input type="time" id="slept-till" name="time_till" min="01:00" required />
+            </p>
+        </p>   
+        <p>
+            <input type="text" name="whom" placeholder="Who?" required >
+        </p>
+        <p>
+            <select name="passifier" required class="passifier">
+                <option value="0" selected disabled>Passifier?</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </p>
+        <p>
+            <input type="submit" value="Enter">
+        </p>
+    </form>
+</div>
+
+<div class="form-block">
+    {% block form %}
+    <!-- THIS IS HIDDEN TILL WE CONFIRM THINGS ARE WORKING AS THEY ARE -->
+    
+    <div class="forms">
+        <!-- <strong><nav>
+            <div class="entries">
+                <ul class="entry-nav">
+                    <li><a href="/ph/home/feeding">Feeding</a></li>
+                    <li><a href="/ph/home/changing">Changing</a></li>
+                    <li><a href="/ph/home/sleep">Sleep</a></li>
+                </ul>
+            </div>
+        </nav></strong> -->
+        <!-- <form class="f-form" action="/ph/home/feeding" method="POST">
+            <p>
+                <input type="date" name="date" required=true value="2018/09/26">
+            </p>
+            <p>
+                <select name="method" required class="methods">
+                    <option value="select" selected disabled>Select a Method</option>
+                    <option value="Breastfed">Breastfed</option>
+                    <option value="Bottle">Bottle</option>
+                    <option value="Formula">Formula</option>
+                </select>
+            </p>
+                <p>
+                    <select name="amount" required class="amount">
+                        <option value="0" selected disabled>Select an Amount</option>
+                        {% for i in range(1,9) %}
+                        <option value="{{ i }}oz">{{ i }}oz</option>
+                        {% endfor %}
+                    </select>
+                </p>
+                <p>
+                    <label>Time:</label>
+                    <input type="time" id="feed-time" name="feed" min="01:00" required />
+                </p>
+                <p>
+                    <select name="vomit" required class="vomit">
+                        <option value="0" selected disabled>Did baby vomit?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </p>
+                <p>
+                    <select name="burp" required class="burp">
+                        <option value="0" selected disabled>Did baby burp?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="submit" value="Enter">
+                </p>
+            </form> -->
+
+            <!-- <form class="f-form" action="/ph/home/changing" method="POST">
+                <p>
+                    <input type="date" name="date" required=true value="2018/09/26">
+                </p>
+                
+                <p>
+                    <input type="text" name="area" placeholder="Where?" required >
+                </p>
+                
+                <p>
+                    <select name="desc" required class="desc">
+                        <option value="select" selected disabled>Poop or Pee</option>
+                        <option value="Poop">Poop</option>
+                        <option value="Pee">Pee</option>
+                        <option value="Both">Both</option>
+                    </select>
+                </p>
+                <p>
+                    <select name="amount" required class="methods">
+                        <option value="select" selected disabled>Amount</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Time:</label>
+                    <input type="time" id="feed-time" name="when" min="01:00" required />
+                </p>
+                <p>
+                    <input type="text" name="color" placeholder="Color of poop" required >
+                </p>
+                <p>
+                    <input type="submit" value="Enter">
+                </p>
+            </form>
+            
+            <form class="f-form" action="/ph/home/sleeping" method="POST">
+                <p>
+                    <input type="date" name="date" required=true value="2018/09/26">
+                </p>
+                <p>
+                    <select name="where" required class="donde">
+                        <option value="select" selected disabled>Where</option>
+                        <option value="Bassinet">Bassinet</option>
+                        <option value="Crib">Crib</option>
+                        <option value="Bed">Parents Bed</option>
+                        <option value="Sleeper">Sleeper</option>
+                        <option value="Co-Sleeper">Co-Sleeper</option>
+                    </select>   
+                    
+                    <p>
+                        <label>From:</label>
+                        <input type="time" id="slept-at" name="time_from" min="01:00" required />
+                    </p>
+                    
+                    <p>
+                        <label>Till:</label>
+                        <input type="time" id="slept-till" name="time_till" min="01:00" required />
+                    </p>
+                </p>   
+                <p>
+                    <input type="text" name="whom" placeholder="Who?" required >
+                </p>
+                <p>
+                    <select name="passifier" required class="passifier">
+                        <option value="0" selected disabled>Passifier?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="submit" value="Enter">
+                </p>
+            </form> -->
+        </div>
+        {% endblock %}
+    </div>
+
+<!-- {{script1 | safe}}
+    {{div1 | safe}} -->
+    {% endblock %}
+    

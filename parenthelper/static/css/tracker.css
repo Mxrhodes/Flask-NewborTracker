@@ -1,0 +1,68 @@
+.container{
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.welcome h2{
+    text-align: center;
+}
+
+.t-feeding, .t-diaper, .t-sleep{
+    display: inline-block;
+    /* width: 30%; */
+}
+
+table {
+    display: inline-block;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 590px;
+    margin-top: 5%;
+    margin-left: 5px;
+}
+
+tr {
+    background-color: rgb(231, 224, 213);
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    width: 30%; 
+    text-align: center;
+    padding: 8px;
+}
+
+caption{
+    font-size: 20px;
+    color:white;
+    /* background-color: rgb(173, 196, 206);  */  
+    background-color: rgb(173, 196, 206);   
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.forms{
+    height: 450px;
+    width: 70%;
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 15%;
+}
+
+.entries li{
+    display: inline-block;
+    margin-left: 15%;
+    font-size: 25px;
+}
+.f-form p{
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 3%;
+    
+}
+
+.f-logo{
+    text-align: left;
+}

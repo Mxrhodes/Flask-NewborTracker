@@ -1,0 +1,85 @@
+{% extends "home.html" %}
+{% block footer %}
+
+    <div class="content-section">
+        <form method="POST" action="{{ url_for('feedpage') }}">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <div class="form-group">
+                    {{ form.method.label(class="form-control-label") }}
+                    {% if form.method.errors %}
+                        {{ form.method(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.method.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.method(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.begin.label(class="form-control-label") }}
+                    {% if form.begin.errors %}
+                        {{ form.begin(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.begin.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.begin(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div> 
+
+                <div class="form-group">
+                    {{ form.end.label(class="form-control-label") }}
+                    {% if form.end.errors %}
+                        {{ form.end(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.end.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.end(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.ounces.label(class="form-control-label") }}
+                    {% if form.ounces.errors %}
+                        {{ form.ounces(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ounces.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ounces(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.spitups.label(class="form-control-label") }}
+                    {% if form.spitups.errors %}
+                        {{ form.spitups(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.spitups.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.spitups(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+    {% endblock footer %}
